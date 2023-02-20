@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PsyshBundle package.
+ * This file is part of the InteractiveBundle package.
  *
  * (c) Théo FIDRY <theo.fidry@gmail.com>
  *
@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Fidry\PsyshBundle;
+namespace Jrmgx\InteractiveBundle;
 
-use Fidry\PsyshBundle\DependencyInjection\Compiler\AddPsyshCommandPass;
+use Jrmgx\InteractiveBundle\DependencyInjection\Compiler\AddPsyshCommandPass;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @private
  */
-final class PsyshBundle extends Bundle
+final class InteractiveBundle extends Bundle
 {
     public function boot(): void
     {

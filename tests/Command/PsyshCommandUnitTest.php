@@ -1,7 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
- * This file is part of the PsyshBundle package.
+ * This file is part of the InteractiveBundle package.
  *
  * (c) Théo FIDRY <theo.fidry@gmail.com>
  *
@@ -9,17 +11,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Fidry\PsyshBundle\Command;
+namespace Jrmgx\InteractiveBundle\Command;
 
 use PHPUnit\Framework\TestCase;
 use Psy\Shell;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use function is_a;
 
 /**
- * @covers \Fidry\PsyshBundle\Command\PsyshCommand
+ * @covers \Jrmgx\InteractiveBundle\Command\PsyshCommand
  *
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
@@ -40,7 +41,7 @@ class PsyshCommandUnitTest extends TestCase
 
         $command = new PsyshCommand($shell);
 
-        $this->assertEquals('Start PsySH for Symfony', $command->getDescription());
+        $this->assertSame('Start PsySH for Symfony', $command->getDescription());
     }
 
     public function testExecute(): void
@@ -56,8 +57,8 @@ class PsyshCommandUnitTest extends TestCase
 
         $output = $this->createMock(OutputInterface::class);
         $output
-            ->expects($this->never())
-            ->method($this->anything())
+            ->expects($this->once())
+            ->method('writeln')
         ;
 
         $command = new PsyshCommand($shell);

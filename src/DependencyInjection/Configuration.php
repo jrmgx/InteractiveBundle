@@ -1,7 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
- * This file is part of the PsyshBundle package.
+ * This file is part of the InteractiveBundle package.
  *
  * (c) Théo FIDRY <theo.fidry@gmail.com>
  *
@@ -9,7 +11,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Fidry\PsyshBundle\DependencyInjection;
+namespace Jrmgx\InteractiveBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

@@ -1,7 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
- * This file is part of the PsyshBundle package.
+ * This file is part of the InteractiveBundle package.
  *
  * (c) Théo FIDRY <theo.fidry@gmail.com>
  *
@@ -9,11 +11,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Fidry\PsyshBundle\Command;
+namespace Jrmgx\InteractiveBundle\Command;
 
-use Psy\Output\ShellOutput;
+use Jrmgx\InteractiveBundle\Interactive;
 use Psy\Shell;
-use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -42,6 +43,8 @@ final class PsyshCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $output->writeln(Interactive::MESSAGE_WELCOME);
+
         // Reset input & output if they are the default ones used. Indeed
         // We call Psysh Application here which will do the necessary
         // bootstrapping.

@@ -1,7 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
- * This file is part of the PsyshBundle package.
+ * This file is part of the InteractiveBundle package.
  *
  * (c) Théo FIDRY <theo.fidry@gmail.com>
  *
@@ -9,14 +11,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Fidry\PsyshBundle\DependencyInjection\Compiler;
+namespace Jrmgx\InteractiveBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Compiler pass allowing to add Psysh commands dynamically
+ * Compiler pass allowing to add Psysh commands dynamically.
  *
  * @author Jérôme Vieilledent <jerome@vieilledent.fr>
  *

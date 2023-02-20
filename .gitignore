@@ -7,6 +7,7 @@ dist
 coverage.xml
 bin
 !bin/console
+!bin/interactive*
 .phpunit.result.cache
 var
 .idea

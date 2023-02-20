@@ -11,7 +11,7 @@
  */
 
 if (false === in_array(PHP_SAPI, ['cli', 'phpdbg', 'embed'], true)) {
-    echo 'Warning: The console should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
+    echo 'Warning: The interactive shell should be invoked via the CLI version of PHP, not the '.PHP_SAPI.' SAPI'.PHP_EOL;
 }
 
 set_time_limit(0);
@@ -21,9 +21,11 @@ require_once __DIR__.'/../vendor/autoload.php';
 use Jrmgx\InteractiveBundle\Functional\AppKernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\ErrorHandler\Debug;
 
 $input = new ArgvInput();
+$output = new ConsoleOutput();
 
 $env = $input->getParameterOption(
         ['--env', '-e'],
@@ -44,4 +46,5 @@ if ($debug) {
 }
 
 $application = new Application(new AppKernel($env, $debug));
-$application->run($input);
+$application->setDefaultCommand('interactive');
+$application->doRun($input, $output);

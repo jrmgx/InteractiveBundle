@@ -1,5 +1,5 @@
 framework:
-    secret: PsyshBundleSecret
+    secret: InteractiveBundleSecret
     router:
         resource: ~
         strict_requirements: '%kernel.debug%'

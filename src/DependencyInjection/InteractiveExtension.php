@@ -1,7 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
- * This file is part of the PsyshBundle package.
+ * This file is part of the InteractiveBundle package.
  *
  * (c) Théo FIDRY <theo.fidry@gmail.com>
  *
@@ -9,7 +11,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Fidry\PsyshBundle\DependencyInjection;
+namespace Jrmgx\InteractiveBundle\DependencyInjection;
 
 use Psy\Command\Command;
 use Symfony\Component\Config\FileLocator;
@@ -18,11 +20,6 @@ use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use function array_merge;
-use function is_string;
-use function sprintf;
-use function strpos;
-use function substr;
 
 /**
  * This is the class that loads and manages your bundle configuration.
@@ -33,51 +30,51 @@ use function substr;
  *
  * @private
  */
-final class PsyshExtension extends Extension
+final class InteractiveExtension extends Extension
 {
-    private const CONFIG_DIR = __DIR__.'/../../resources/config';
+    private const CONFIG_DIR = __DIR__ . '/../../resources/config';
 
     /**
      * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $loader = new Loader\XmlFileLoader(
+        $loader = new Loader\YamlFileLoader(
             $container,
             new FileLocator(self::CONFIG_DIR),
         );
-        $loader->load('services.xml');
+        $loader->load('services.yaml');
 
         $config = $this->processConfiguration(new Configuration(), $configs);
 
         foreach ($config['variables'] as $name => $value) {
-            if (is_string($value) && strpos($value, '@') === 0) {
-                $value = new Reference(substr($value, 1));
+            if (\is_string($value) && 0 === mb_strpos($value, '@')) {
+                $value = new Reference(mb_substr($value, 1));
             }
 
             $config['variables'][$name] = $value;
         }
 
-        $containerId = 'test.service_container';
-
-        $container
-            ->findDefinition('psysh.shell')
-            ->addMethodCall(
-                'setScopeVariables',
-                [array_merge(
-                    $config['variables'],
-                    [
-                        'container' => new Reference($containerId),
-                        'kernel' => new Reference('kernel'),
-                        'self' => new Reference('psysh.shell'),
-                        'parameters' => new Expression(sprintf(
-                            "service('%s').getParameterBag().all()",
-                            $containerId
-                        ))
-                    ]
-                )]
-            )
-        ;
+        // $containerId = 'test.service_container';
+//
+//        $container
+//            ->findDefinition('psysh.shell')
+//            ->addMethodCall(
+//                'setScopeVariables',
+//                [array_merge(
+//                    $config['variables'],
+//                    [
+//                        'container' => new Reference($containerId),
+//                        'kernel' => new Reference('kernel'),
+//                        'self' => new Reference('psysh.shell'),
+//                        'parameters' => new Expression(sprintf(
+//                            "service('%s').getParameterBag().all()",
+//                            $containerId
+//                        )),
+//                    ]
+//                )]
+//            )
+//        ;
 
         $container
             ->registerForAutoconfiguration(Command::class)

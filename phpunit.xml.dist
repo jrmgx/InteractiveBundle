@@ -5,11 +5,11 @@
          bootstrap="vendor/autoload.php">
 
     <php>
-        <server name="KERNEL_CLASS" value="Fidry\PsyshBundle\Functional\AppKernel" />
+        <server name="KERNEL_CLASS" value="Jrmgx\InteractiveBundle\Functional\AppKernel" />
     </php>
 
     <testsuites>
-        <testsuite name="PsyshBundle Test Suite">
+        <testsuite name="InteractiveBundle Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

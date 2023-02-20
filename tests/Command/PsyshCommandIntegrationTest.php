@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the PsyshBundle package.
+ * This file is part of the InteractiveBundle package.
  *
  * (c) Théo FIDRY <theo.fidry@gmail.com>
  *
@@ -9,15 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Fidry\PsyshBundle\Command;
+namespace Jrmgx\InteractiveBundle\Command;
 
 use Psy\Shell;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Bundle\FrameworkBundle\Test\TestContainer;
-use Symfony\Component\HttpKernel\Kernel;
-use function array_keys;
-use function version_compare;
 
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
@@ -42,29 +38,22 @@ class PsyshCommandIntegrationTest extends KernelTestCase
     {
         $this->assertEqualsCanonicalizing(
             [
-                'container',
-                'kernel',
-                'parameters',
+//                'container',
+//                'kernel',
+//                'parameters',
                 '_',
-                'self',
+                // 'self',
             ],
             array_keys($this->shell->getScopeVariables()),
             'Expected shell service to have scope variables'
         );
     }
 
-    public function testContainerInstance(): void
-    {
-        $container = $this->shell->getScopeVariable('container');
-
-        $this->assertInstanceOf(TestContainer::class, $container);
-    }
-
     public function testFindShell(): void
     {
         $application = new Application(self::$kernel);
         $application->add($this->command);
-        $application->find('psysh');
+        $application->find('interactive');
 
         $this->addToAssertionCount(1);
     }

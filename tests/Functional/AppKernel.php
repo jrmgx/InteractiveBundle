@@ -1,7 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
- * This file is part of the PsyshBundle package.
+ * This file is part of the InteractiveBundle package.
  *
  * (c) Théo FIDRY <theo.fidry@gmail.com>
  *
@@ -9,12 +11,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Fidry\PsyshBundle\Functional;
+namespace Jrmgx\InteractiveBundle\Functional;
 
-use Fidry\PsyshBundle\PsyshBundle;
+use Jrmgx\InteractiveBundle\InteractiveBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
@@ -26,12 +27,12 @@ class AppKernel extends Kernel
     {
         return [
             new FrameworkBundle(),
-            new PsyshBundle(),
+            new InteractiveBundle(),
         ];
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader): void
     {
-        $loader->load(__DIR__.'/config.yaml');
+        $loader->load(__DIR__ . '/config.yaml');
     }
 }

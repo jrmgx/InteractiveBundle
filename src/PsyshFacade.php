@@ -1,7 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
- * This file is part of the PsyshBundle package.
+ * This file is part of the InteractiveBundle package.
  *
  * (c) Théo FIDRY <theo.fidry@gmail.com>
  *
@@ -9,13 +11,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Fidry\PsyshBundle;
+namespace Jrmgx\InteractiveBundle;
 
 use Psy\Shell;
-use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use function array_merge;
 
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
@@ -33,7 +33,7 @@ final class PsyshFacade implements ContainerAwareInterface
         }
 
         if (!isset(self::$container)) {
-            throw new RuntimeException('Cannot initialize the facade without a container.');
+            throw new \RuntimeException('Cannot initialize the facade without a container.');
         }
 
         self::$shell = self::$container->get('psysh.shell');
