@@ -52,7 +52,7 @@ class PsyshCommandIntegrationTest extends KernelTestCase
     public function testFindShell(): void
     {
         $application = new Application(self::$kernel);
-        $application->add($this->command);
+        $application->addCommand($this->command);
         $application->find('interactive');
 
         $this->addToAssertionCount(1);

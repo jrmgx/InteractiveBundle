@@ -179,8 +179,7 @@ HELP
      */
     protected function findProjectDir()
     {
-        // __DIR__ = vendor/jrmgx/interactive-bundle/src/Command
-        $dir = (string) realpath(__DIR__ . '/../../../../'); // vendor
+        $dir = (string) realpath(__DIR__);
         while ($dir !== \dirname($dir)) {
             $files = (new Finder())->depth('== 0')->in($dir)->files()->name('composer.json');
             if ($files->count() > 0) {
@@ -188,7 +187,7 @@ HELP
 
                 return current($results);
             }
-            $dir = \dirname($dir); // Move up one level
+            $dir = \dirname($dir);
         }
 
         return false;

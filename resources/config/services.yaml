@@ -17,6 +17,7 @@ services:
 
     psysh.shell:
         class: Psy\Shell
+        public: true
         arguments:
             - '@Psy\Configuration'
 
@@ -31,8 +32,8 @@ services:
     psysh.facade:
         class: Jrmgx\InteractiveBundle\PsyshFacade
         public: true
-        calls:
-            - setContainer: ['@test.service_container']
+        arguments:
+            - '@service_container'
 
     test.service_container:
         class: Symfony\Bundle\FrameworkBundle\Test\TestContainer

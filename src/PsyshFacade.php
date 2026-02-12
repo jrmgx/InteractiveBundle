@@ -14,25 +14,29 @@ declare(strict_types=1);
 namespace Jrmgx\InteractiveBundle;
 
 use Psy\Shell;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-final class PsyshFacade implements ContainerAwareInterface
+final class PsyshFacade
 {
-    private static Shell $shell;
+    private static ?Shell $shell = null;
 
-    private static ContainerInterface $container;
+    private static ?ContainerInterface $container = null;
+
+    public function __construct(ContainerInterface $container)
+    {
+        self::$container = $container;
+    }
 
     public static function init(): void
     {
-        if (isset(self::$shell)) {
+        if (self::$shell !== null) {
             return;
         }
 
-        if (!isset(self::$container)) {
+        if (self::$container === null) {
             throw new \RuntimeException('Cannot initialize the facade without a container.');
         }
 
@@ -46,10 +50,5 @@ final class PsyshFacade implements ContainerAwareInterface
         $_variables = array_merge(self::$shell->getScopeVariables(), $variables);
 
         self::$shell::debug($_variables, $bind);
-    }
-
-    public function setContainer(ContainerInterface $container = null): void
-    {
-        self::$container = $container;
     }
 }
